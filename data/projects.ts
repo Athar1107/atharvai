@@ -3,7 +3,7 @@ import { Project } from '@/types';
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'Smart Attendance System',
+    title: 'AI-Powered-Student-Performance-Prediction-Model',
     description:
       'An AI-powered attendance tracking system using facial recognition and computer vision to automate student/employee check-ins in real time.',
     image: '/images/projects/attendance.jpg',
