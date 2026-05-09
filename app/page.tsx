@@ -11,7 +11,7 @@ import { ScrollReveal } from '@/components/ui';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#020817] overflow-x-hidden">
+    <main className="relative min-h-screen bg-[#020817] overflow-x-hidden grid-bg">
       <Navbar />
       <Hero />
       <ScrollReveal>
