@@ -117,7 +117,7 @@ export default function Projects() {
           className="mt-10 text-center"
         >
           <motion.a
-            href="#"
+            href="https://github.com/Athar1107"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold

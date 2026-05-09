@@ -42,11 +42,11 @@ export const projects: Project[] = [
     title: 'Twitter Sentiment Analysis',
     description:
       'A machine learning-based Twitter sentiment analysis system that analyzes tweets in real time to classify public sentiment and extract meaningful insights from social media data.',
-    image: '/images/projects/cnn.jpg',
+    image: '/images/projects/twitter.png',
     tags: ['Python', 'NLP', 'Sentiment Analysis', 'Twitter API'],
     category: 'Natural Language Processing',
     githubUrl: 'https://github.com/Athar1107/twitter_sentiment_analysis',
-    liveUrl: '#',
+    liveUrl: 'https://github.com/Athar1107/twitter_sentiment_analysis',
     featured: true,
   },
 ];
