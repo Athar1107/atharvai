@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { SectionHeader, GlassCard } from '@/components/ui';
 import { projects } from '@/data/projects';
@@ -10,8 +11,6 @@ const projectGradients = [
   'from-emerald-600/20 to-teal-500/20',
   'from-orange-600/20 to-amber-500/20',
 ];
-
-const projectEmojis = ['🎓', '🤖', '💻', '🧠'];
 
 export default function Projects() {
   return (
@@ -26,7 +25,7 @@ export default function Projects() {
           subtitle="A selection of projects that showcase my work in AI, Machine Learning, and Web Development."
         />
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <GlassCard
               key={project.id}
@@ -34,19 +33,17 @@ export default function Projects() {
               className="group overflow-hidden p-0"
             >
               {/* Thumbnail */}
-              <div className={`relative h-48 bg-gradient-to-br ${projectGradients[i % projectGradients.length]}
+              <div className={`relative h-52 bg-gradient-to-br ${projectGradients[i % projectGradients.length]}
                 overflow-hidden`}>
+                {project.image && (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 grid-bg opacity-40" />
-                {/* Animated grid lines */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.3 }}
-                >
-                  <span className="text-7xl select-none">{projectEmojis[i % projectEmojis.length]}</span>
-                </motion.div>
 
                 {/* Category badge */}
                 <div className="absolute top-4 left-4">
