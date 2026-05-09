@@ -162,7 +162,7 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-14 flex flex-wrap gap-8"
           >
-            {[['5+', 'Projects'], ['2+', 'Blog Posts']].map(([val, label]) => (
+            {[['8+', 'Projects'], ['2+', 'Blog Posts']].map(([val, label]) => (
               <div key={label} className="flex flex-col">
                 <span className="font-heading font-bold text-2xl gradient-text">{val}</span>
                 <span className="text-slate-500 text-xs mt-0.5">{label}</span>

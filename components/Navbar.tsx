@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navLinks } from '@/data';
 
@@ -52,10 +53,16 @@ export default function Navbar() {
               onClick={() => scrollTo('#home')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="font-heading font-bold text-xl text-white"
+              className="flex items-center"
             >
-              <span className="gradient-text">Atharv</span>
-              <span className="text-blue-400 ml-0.5">.</span>
+              <Image
+                src="/logo.png"
+                alt="Atharv Ambekar Logo"
+                width={120}
+                height={40}
+                className="object-contain h-10 w-auto"
+                priority
+              />
             </motion.button>
 
             {/* Desktop Links */}
