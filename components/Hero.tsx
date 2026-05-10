@@ -4,6 +4,8 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { MagneticButton } from '@/components/ui';
+import { FaLinkedinIn } from 'react-icons/fa6';
+import { SiGithub, SiMedium } from 'react-icons/si';
 
 const containerVariants: Variants = {
   hidden: {},
@@ -63,7 +65,7 @@ export default function Hero() {
         >
           <Image
             src="/profile.png"
-            alt="Atharv"
+            alt="Atharv Ambekar"
             fill
             className="object-cover object-top"
             priority
@@ -113,7 +115,7 @@ export default function Hero() {
               text-xs font-semibold tracking-wider uppercase
               bg-blue-500/10 border border-blue-500/25 text-blue-300">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              BUILDING AI&nbsp;•&nbsp;DIGITAL EXPERIENCES
+              AI DEVELOPER&nbsp;•&nbsp;TECHNICAL BLOGGER
             </span>
           </motion.div>
 
@@ -121,7 +123,7 @@ export default function Hero() {
           <motion.h1 variants={itemVariants} className="font-heading font-bold leading-none mb-6">
             <span className="block text-5xl sm:text-6xl xl:text-7xl text-white">
               Hi, I&apos;m{' '}
-              <span className="gradient-text text-glow">Atharv</span>
+              <span className="gradient-text text-glow">Atharv Ambekar</span>
             </span>
             <span className="block text-4xl sm:text-5xl xl:text-6xl text-slate-300 mt-2">
               I build, learn &amp; share.
@@ -133,8 +135,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-slate-400 text-lg leading-relaxed mb-10 max-w-lg"
           >
-            Passionate about Artificial Intelligence, Computer Vision and building impactful
-            digital experiences.
+            Building intelligent systems through AI, Computer Vision, and impactful technical leadership while simplifying complex concepts through technical content creation.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -155,6 +156,26 @@ export default function Hero() {
             >
               ↓ Download CV
             </MagneticButton>
+            <div className="flex items-center gap-3 ml-2">
+              <MagneticButton
+                href="https://github.com/Athar1107"
+                className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-600 hover:border-blue-500/50 text-slate-400 hover:text-white bg-white/5 hover:bg-white/8 transition-all duration-300"
+              >
+                <SiGithub className="w-5 h-5" />
+              </MagneticButton>
+              <MagneticButton
+                href="https://www.linkedin.com/in/atharv-ambekar-187160297/"
+                className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-600 hover:border-blue-500/50 text-slate-400 hover:text-[#0A66C2] bg-white/5 hover:bg-white/8 transition-all duration-300"
+              >
+                <FaLinkedinIn className="w-5 h-5" />
+              </MagneticButton>
+              <MagneticButton
+                href="https://medium.com/@atharvambekar1105"
+                className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-600 hover:border-blue-500/50 text-slate-400 hover:text-white bg-white/5 hover:bg-white/8 transition-all duration-300"
+              >
+                <SiMedium className="w-5 h-5" />
+              </MagneticButton>
+            </div>
           </motion.div>
 
           {/* Stats row */}

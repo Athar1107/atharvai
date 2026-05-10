@@ -45,23 +45,18 @@ export default function About() {
             <h3 className="font-heading font-bold text-xl text-white mb-4">Who I Am</h3>
             <div className="space-y-4 text-slate-400 leading-relaxed">
               <p>
-                I&apos;m Atharv — a Computer Science student, AI enthusiast, and Secretary of my
-                college&apos;s IEEE Student Branch. I&apos;m passionate about Machine Learning, Deep
-                Learning, and building AI-powered applications that solve real problems.
+                I&apos;m Atharv Ambekar — an AI Developer and Secretary of my college&apos;s IEEE Student Branch. My passion lies in Computer Vision and Machine Learning, where I focus on building intelligent systems that solve complex, real-world problems.
               </p>
               <p>
-                Beyond the code, I write technical blogs to break down complex AI concepts for
-                beginners, organize community events, and believe that sharing knowledge is as
-                important as building it.
+                Beyond writing code, I am a dedicated technical blogger and creative problem solver. I believe in simplifying complex AI concepts through content creation, bridging the gap between advanced research and practical application.
               </p>
               <p>
-                When I&apos;m not training models or writing, you&apos;ll find me exploring the latest
-                research papers, contributing to open-source, or planning the next community event.
+                As a technical leader, I actively manage cross-functional teams and drive innovation within student communities. Whether I&apos;m training deep learning models or coordinating impactful events, I strive to combine technical excellence with effective communication.
               </p>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {['Python', 'Deep Learning', 'NLP', 'Computer Vision', 'Community Building', 'Technical Writing'].map((tag) => (
+              {['Python', 'Deep Learning', 'NLP', 'Computer Vision', 'Technical Leadership', 'Technical Writing'].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 border border-blue-500/20 text-blue-300"

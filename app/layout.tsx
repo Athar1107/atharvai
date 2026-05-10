@@ -16,29 +16,28 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: 'Atharv — AI Engineer, Blogger & Community Builder',
+  title: 'Atharv Ambekar — AI Engineer & Blogger',
   description:
-    'Portfolio of Atharv — an AI Engineer, Blogger, and Community Builder passionate about Deep Learning, Agentic AI, and building impactful tech communities.',
+    'Portfolio of Atharv Ambekar — an AI Engineer and technical blogger passionate about Deep Learning, Agentic AI, and building intelligent systems.',
   keywords: [
     'AI Engineer',
     'Machine Learning',
     'Deep Learning',
     'Portfolio',
     'Blogger',
-    'Community Builder',
     'Python',
     'TensorFlow',
     'PyTorch',
   ],
-  authors: [{ name: 'Atharv' }],
+  authors: [{ name: 'Atharv Ambekar' }],
   openGraph: {
-    title: 'Atharv — AI Engineer, Blogger & Community Builder',
+    title: 'Atharv Ambekar — AI Engineer & Blogger',
     description: 'I build, learn & share. Explore my work in AI, ML, and community tech.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Atharv — AI Engineer, Blogger & Community Builder',
+    title: 'Atharv Ambekar — AI Engineer & Blogger',
   },
 };
 

@@ -11,10 +11,10 @@ export const experiences: Experience[] = [
     description:
       'Overseeing branch operations, strategic initiatives, and student engagement activities.',
     bullets: [
-      'Managed branch operations and official communications',
-      'Led planning and execution of technical events and initiatives',
-      'Coordinated with IEEE chapters and student teams',
-      'Strengthened community engagement and collaborative growth',
+      'Managed branch operations and official communications for a community of 500+ members',
+      'Led planning and execution of technical events, increasing student engagement by 40%',
+      'Coordinated cross-functional teams and IEEE chapters to deliver high-impact workshops',
+      'Strengthened community engagement and collaborative growth through strategic initiatives',
     ],
   },
   {
@@ -27,10 +27,10 @@ export const experiences: Experience[] = [
     description:
       'Creating engaging technical content focused on AI, Computer Vision, and emerging technologies.',
     bullets: [
-      'Published blogs on AI, Deep Learning, and Computer Vision',
-      'Simplified complex technical concepts through storytelling',
-      'Explored real-world applications of modern AI technologies',
-      'Built a growing technical presence through consistent content',
+      'Published 10+ technical blogs on AI, Deep Learning, and Computer Vision',
+      'Simplified complex technical concepts into engaging content reaching 1000+ readers',
+      'Explored and demonstrated real-world applications of modern AI technologies',
+      'Built a strong technical presence and consistent brand across platforms',
     ],
   },
   {
@@ -43,10 +43,10 @@ export const experiences: Experience[] = [
     description:
       'Led strategic initiatives, flagship events, and student engagement activities within IEEE SOU SB.',
     bullets: [
-      'Led flagship events including AI Conclave 2.0 and SOU Talks',
-      'Coordinated planning, execution, and cross-team communication',
-      'Mentored teams to foster leadership and innovation',
-      'Strengthened skills in Python, Computer Vision, and design',
+      'Led flagship events including AI Conclave 2.0 and SOU Talks with 500+ participant engagement',
+      'Coordinated planning, execution, and cross-team communication for 10+ initiatives',
+      'Mentored volunteers and streamlined workflows to foster leadership and innovation',
+      'Applied skills in Python, Computer Vision, and UI/UX design to community projects',
     ],
   },
   {

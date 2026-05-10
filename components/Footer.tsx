@@ -54,11 +54,10 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <button onClick={() => scrollTo('#home')} className="font-heading font-bold text-2xl text-white mb-3 block">
-              <span className="gradient-text">Atharv</span>
-              <span className="text-blue-400">.</span>
+              <span className="gradient-text">Atharv Ambekar</span>
             </button>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-              AI Engineer · Blogger · Community Builder. Building the future one model at a time.
+              AI Engineer · Blogger. Building the future one model at a time.
             </p>
           </div>
 
@@ -104,7 +103,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-800/60 flex items-center justify-center">
           <p className="text-slate-600 text-xs">
-            © {new Date().getFullYear()} Atharv. All rights reserved.
+            © {new Date().getFullYear()} Atharv Ambekar. All rights reserved.
           </p>
         </div>
       </div>
