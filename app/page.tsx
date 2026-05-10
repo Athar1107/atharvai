@@ -1,3 +1,4 @@
+import SplashScreen from '@/components/SplashScreen';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -12,6 +13,7 @@ import { ScrollReveal } from '@/components/ui';
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-[#020817] overflow-x-hidden grid-bg">
+      <SplashScreen />
       <Navbar />
       <Hero />
       <ScrollReveal>

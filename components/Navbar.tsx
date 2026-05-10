@@ -56,11 +56,11 @@ export default function Navbar() {
               className="flex items-center"
             >
               <Image
-                src="/logo.png"
+                src="/Vector 19.png"
                 alt="Atharv Ambekar Logo"
-                width={120}
+                width={40}
                 height={40}
-                className="object-contain h-10 w-auto"
+                className="object-contain h-8 w-auto"
                 priority
               />
             </motion.button>

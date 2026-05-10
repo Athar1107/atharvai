@@ -79,7 +79,7 @@ export default function Hero() {
             shadow-[0_0_30px_rgba(59,130,246,0.25)]"
         >
           <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mb-1">Latest</p>
-          <p className="text-sm font-bold text-white">✍️ 25+ Articles</p>
+          <p className="text-sm font-bold text-white">10+ Articles</p>
         </motion.div>
 
         {/* ── Floating badge — Currently Exploring ── */}
@@ -91,7 +91,7 @@ export default function Hero() {
             shadow-[0_0_30px_rgba(59,130,246,0.25)]"
         >
           <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mb-1">Currently Exploring</p>
-          <p className="text-sm font-bold text-white">Agentic AI 🤖</p>
+          <p className="text-sm font-bold text-white">Computer Vision</p>
         </motion.div>
       </motion.div>
 
