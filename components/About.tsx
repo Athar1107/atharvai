@@ -73,7 +73,7 @@ export default function About() {
           </GlassCard>
 
           {/* Currently Exploring */}
-          <GlassCard className="p-8">
+          <GlassCard className="p-8 h-fit self-center">
             <h3 className="font-heading font-bold text-xl text-white mb-6">
               🔭 Currently Exploring
             </h3>
