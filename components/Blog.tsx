@@ -25,7 +25,7 @@ export default function Blog() {
           subtitle="I write to learn and share. Here are some articles on AI, ML, and the builder mindset."
         />
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className={`grid gap-6 ${blogPosts.length === 1 ? 'max-w-md mx-auto' : 'md:grid-cols-3'}`}>
           {blogPosts.map((post, i) => (
             <GlassCard key={post.id} delay={i * 0.1} className="group overflow-hidden p-0">
               {/* Cover */}
@@ -83,6 +83,8 @@ export default function Blog() {
                   </span>
                   <motion.a
                     href={post.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ x: 4 }}
                     className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
                   >
@@ -102,7 +104,9 @@ export default function Blog() {
           className="mt-10 text-center"
         >
           <motion.a
-            href="#"
+            href="https://medium.com/@atharvambekar1105"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold
