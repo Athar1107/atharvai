@@ -50,6 +50,21 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    id: '7',
+    role: 'UI Intern',
+    org: 'Zaalima',
+    period: 'June 2025 - August 2025',
+    type: 'internship',
+    icon: 'UI',
+    description:
+      'Contributed to targeted marketing campaigns, SEO strategies, and sales collateral development.',
+    bullets: [
+      'Developed and executed targeted marketing campaigns, resulting in a 25% increase in lead generation.',
+      'Implemented SEO strategies that improved website traffic by 30%, enhancing online visibility and positioning the company.',
+      'Collaborated with sales teams to create effective sales collateral, presentations, and promotional materials.',
+    ],
+  },
+  {
     id: '4',
     role: 'Vice Chairperson - Content Committee',
     org: 'Silver Oak University IEEE Student Branch',
@@ -67,6 +82,22 @@ export const experiences: Experience[] = [
   },
   {
     id: '5',
+    role: 'Member',
+    org: 'Silver Oak University IEEE Student Branch',
+    period: '2023',
+    type: 'leadership',
+    icon: 'MB',
+    description:
+      'Developed leadership, communication, and team management skills through active involvement in technical initiatives and events.',
+    bullets: [
+      'Strengthened communication and public interaction skills',
+      'Enhanced technical and creative content development abilities',
+      'Managed event tasks, deadlines, and team coordination',
+      'Collaborated with diverse teams in fast-paced environments',
+    ],
+  },
+  {
+    id: '6',
     role: 'CBSE XII',
     org: 'Shree Swaminarayan Gurukul Salvav',
     period: '2022 - 2023',

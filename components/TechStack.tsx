@@ -7,7 +7,8 @@ import {
   SiPython, SiTensorflow, SiPytorch, SiOpencv, 
   SiHtml5, SiCss, SiJavascript, SiReact, SiNextdotjs, 
   SiTailwindcss, SiMysql, SiGit, SiScikitlearn, 
-  SiNumpy, SiPandas, SiLangchain 
+  SiNumpy, SiPandas, SiLangchain,
+  SiFigma, SiCanva, SiAffinity, SiDavinciresolve
 } from 'react-icons/si';
 
 const iconMap: Record<string, React.ReactElement> = {
@@ -27,10 +28,15 @@ const iconMap: Record<string, React.ReactElement> = {
   'NumPy': <SiNumpy className="text-[#013243]" />,
   'Pandas': <SiPandas className="text-[#150458]" />,
   'LangChain': <SiLangchain className="text-slate-300" />,
+  'Figma': <SiFigma className="text-[#F24E1E]" />,
+  'Canva': <SiCanva className="text-[#00C4CC]" />,
+  'Affinity': <SiAffinity className="text-[#8B98C2]" />,
+  'DaVinci Resolve': <SiDavinciresolve className="text-slate-300" />,
 };
 
-const row1 = techStack.slice(0, 8);
-const row2 = techStack.slice(8);
+const half = Math.ceil(techStack.length / 2);
+const row1 = techStack.slice(0, half);
+const row2 = techStack.slice(half);
 
 function MarqueeRow({ items, reverse = false }: { items: typeof techStack; reverse?: boolean }) {
   const doubled = [...items, ...items]; // duplicate for seamless loop

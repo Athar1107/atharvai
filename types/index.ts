@@ -26,7 +26,7 @@ export interface Experience {
   role: string;
   org: string;
   period: string;
-  type: 'ieee' | 'community' | 'event' | 'blog';
+  type: 'ieee' | 'community' | 'event' | 'blog' | 'leadership' | 'internship';
   description: string;
   bullets: string[];
   icon: string;

@@ -9,6 +9,8 @@ const typeColors: Record<string, string> = {
   community: 'from-emerald-500 to-teal-500',
   event: 'from-orange-500 to-amber-500',
   blog: 'from-purple-500 to-pink-500',
+  leadership: 'from-rose-500 to-pink-500',
+  internship: 'from-indigo-500 to-violet-500',
 };
 
 const typeBg: Record<string, string> = {
@@ -16,6 +18,8 @@ const typeBg: Record<string, string> = {
   community: 'bg-emerald-500/10 border-emerald-500/20',
   event: 'bg-orange-500/10 border-orange-500/20',
   blog: 'bg-purple-500/10 border-purple-500/20',
+  leadership: 'bg-rose-500/10 border-rose-500/20',
+  internship: 'bg-indigo-500/10 border-indigo-500/20',
 };
 
 export default function Experience() {

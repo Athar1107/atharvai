@@ -17,6 +17,10 @@ export const techStack: TechItem[] = [
   { name: 'NumPy', category: 'ai' },
   { name: 'Pandas', category: 'ai' },
   { name: 'LangChain', category: 'ai' },
+  { name: 'Figma', category: 'tool' },
+  { name: 'Canva', category: 'tool' },
+  { name: 'Affinity', category: 'tool' },
+  { name: 'DaVinci Resolve', category: 'tool' },
 ];
 
 export const stats: Stat[] = [
