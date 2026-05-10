@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { SectionHeader, GlassCard } from '@/components/ui';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
-import { stats, exploringItems, inspirators } from '@/data';
+import { stats, exploringItems } from '@/data';
 import { Rocket, PenTool, Trophy } from 'lucide-react';
 
 const statIconMap: Record<string, React.ReactNode> = {
@@ -95,33 +95,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* Inspirators */}
-            <div className="mt-8">
-              <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">
-                Inspired By
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {inspirators.map((insp, i) => (
-                  <motion.a
-                    key={insp.handle}
-                    href={insp.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium
-                      bg-slate-800/80 border border-slate-700 text-slate-300
-                      hover:border-blue-500/50 hover:text-blue-300 hover:bg-blue-500/10
-                      transition-all duration-200 cursor-pointer"
-                  >
-                    {insp.handle}
-                  </motion.a>
-                ))}
-              </div>
-            </div>
+
           </GlassCard>
         </div>
       </div>

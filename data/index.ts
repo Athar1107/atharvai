@@ -51,13 +51,3 @@ export const exploringItems: ExploringItem[] = [
   { label: 'MLOps', icon: '⚙️', color: 'from-emerald-500/20 to-teal-500/20' },
   { label: 'AI Automation', icon: '⚡', color: 'from-orange-500/20 to-amber-500/20' },
 ];
-
-export const inspirators: Inspirator[] = [
-  { handle: '@karpathy', url: 'https://twitter.com/karpathy' },
-  { handle: '@AndrewYNg', url: 'https://twitter.com/AndrewYNg' },
-  { handle: '@sentdex', url: 'https://twitter.com/sentdex' },
-  { handle: '@veritasium', url: 'https://twitter.com/veritasium' },
-  { handle: '@TensorFlow', url: 'https://twitter.com/TensorFlow' },
-  { handle: '@OpenAI', url: 'https://twitter.com/OpenAI' },
-  { handle: '@codebasics', url: 'https://twitter.com/codebasics' },
-];
