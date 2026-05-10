@@ -1,29 +1,28 @@
 import { TechItem, Stat, NavLink, SocialLink, ExploringItem, Inspirator } from '@/types';
 
 export const techStack: TechItem[] = [
-  { name: 'Python', icon: '🐍', category: 'ai' },
-  { name: 'TensorFlow', icon: '🧠', category: 'ai' },
-  { name: 'PyTorch', icon: '🔥', category: 'ai' },
-  { name: 'OpenCV', icon: '👁️', category: 'ai' },
-  { name: 'HTML', icon: '🌐', category: 'web' },
-  { name: 'CSS', icon: '🎨', category: 'web' },
-  { name: 'JavaScript', icon: '⚡', category: 'web' },
-  { name: 'React', icon: '⚛️', category: 'web' },
-  { name: 'Next.js', icon: '▲', category: 'web' },
-  { name: 'Tailwind CSS', icon: '💨', category: 'web' },
-  { name: 'MySQL', icon: '🗄️', category: 'database' },
-  { name: 'Git', icon: '🔀', category: 'tool' },
-  { name: 'Scikit-learn', icon: '📊', category: 'ai' },
-  { name: 'NumPy', icon: '🔢', category: 'ai' },
-  { name: 'Pandas', icon: '🐼', category: 'ai' },
-  { name: 'LangChain', icon: '🔗', category: 'ai' },
+  { name: 'Python', category: 'ai' },
+  { name: 'TensorFlow', category: 'ai' },
+  { name: 'PyTorch', category: 'ai' },
+  { name: 'OpenCV', category: 'ai' },
+  { name: 'HTML', category: 'web' },
+  { name: 'CSS', category: 'web' },
+  { name: 'JavaScript', category: 'web' },
+  { name: 'React', category: 'web' },
+  { name: 'Next.js', category: 'web' },
+  { name: 'Tailwind CSS', category: 'web' },
+  { name: 'MySQL', category: 'database' },
+  { name: 'Git', category: 'tool' },
+  { name: 'Scikit-learn', category: 'ai' },
+  { name: 'NumPy', category: 'ai' },
+  { name: 'Pandas', category: 'ai' },
+  { name: 'LangChain', category: 'ai' },
 ];
 
 export const stats: Stat[] = [
-  { label: 'Projects Built', value: 10, suffix: '+', icon: '🚀' },
-  { label: 'Blog Posts', value: 25, suffix: '+', icon: '✍️' },
-  { label: 'Events Organized', value: 15, suffix: '+', icon: '🎯' },
-  { label: 'Achievements', value: 5, suffix: '+', icon: '🏆' },
+  { label: 'Projects Built', value: 8, suffix: '+' },
+  { label: 'Blog Posts', value: 1, suffix: '+' },
+  { label: 'Achievements', value: 5, suffix: '+' },
 ];
 
 export const navLinks: NavLink[] = [
@@ -36,10 +35,10 @@ export const navLinks: NavLink[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { platform: 'GitHub', url: '#', icon: 'github' },
-  { platform: 'LinkedIn', url: '#', icon: 'linkedin' },
-  { platform: 'Gmail', url: 'mailto:placeholder@gmail.com', icon: 'mail' },
-  { platform: 'Instagram', url: '#', icon: 'instagram' },
+  { platform: 'GitHub', url: 'https://github.com/Athar1107', icon: 'github', handle: 'github.com/Athar1107' },
+  { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/atharv-ambekar-187160297/', icon: 'linkedin', handle: 'linkedin.com/in/atharv-ambekar' },
+  { platform: 'Gmail', url: 'mailto:atharvambekar1105@gmail.com', icon: 'mail', handle: 'atharvambekar1105@gmail.com' },
+  { platform: 'Medium', url: 'https://medium.com/@atharvambekar1105', icon: 'medium', handle: '@atharvambekar1105' },
 ];
 
 export const exploringItems: ExploringItem[] = [

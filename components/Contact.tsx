@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactElement } from 'react';
+import { useState, type ReactElement } from 'react';
 
 import { motion } from 'framer-motion';
 import { SectionHeader, GlassCard } from '@/components/ui';
@@ -28,9 +28,48 @@ const iconMap: Record<string, ReactElement> = {
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
     </svg>
   ),
+  medium: (
+    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.11-.53 5.62-1.18 5.62-.66 0-1.18-2.51-1.18-5.62 0-3.11.53-5.62 1.18-5.62.66 0 1.18 2.51 1.18 5.62"/>
+    </svg>
+  ),
 };
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          ...formData
+        })
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       {/* bg glow */}
@@ -75,11 +114,7 @@ export default function Contact() {
                   <div>
                     <p className="text-white font-semibold text-sm">{social.platform}</p>
                     <p className="text-slate-500 text-xs mt-0.5">
-                      {social.platform === 'Gmail'
-                        ? 'placeholder@gmail.com'
-                        : social.platform === 'GitHub'
-                        ? 'github.com/placeholder'
-                        : `@placeholder`}
+                      {social.handle}
                     </p>
                   </div>
                   <svg
@@ -96,13 +131,16 @@ export default function Contact() {
           {/* Message Form */}
           <GlassCard className="p-8">
             <h3 className="font-heading font-bold text-white text-xl mb-6">Send a Message</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
                   Name
                 </label>
                 <input
                   type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Your name"
                   className="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700
                     text-white placeholder:text-slate-600 text-sm
@@ -116,6 +154,9 @@ export default function Contact() {
                 </label>
                 <input
                   type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="your@email.com"
                   className="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700
                     text-white placeholder:text-slate-600 text-sm
@@ -128,7 +169,10 @@ export default function Contact() {
                   Message
                 </label>
                 <textarea
+                  required
                   rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="What's on your mind?"
                   className="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700
                     text-white placeholder:text-slate-600 text-sm resize-none
@@ -136,15 +180,30 @@ export default function Contact() {
                     transition-colors duration-200"
                 />
               </div>
+              
+              {status === 'success' && (
+                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm text-center">
+                  Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
+                  Something went wrong. Please try again or email me directly.
+                </div>
+              )}
+
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold
-                  text-sm transition-colors shadow-[0_0_20px_rgba(59,130,246,0.4)]
-                  hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]"
+                disabled={status === 'loading'}
+                whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
+                whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
+                className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-colors
+                  ${status === 'loading' 
+                    ? 'bg-blue-600/50 text-white/50 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]'
+                  }`}
               >
-                Send Message →
+                {status === 'loading' ? 'Sending...' : 'Send Message →'}
               </motion.button>
             </form>
           </GlassCard>

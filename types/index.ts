@@ -34,7 +34,7 @@ export interface Experience {
 
 export interface TechItem {
   name: string;
-  icon: string;
+  icon?: string;
   category: 'ai' | 'web' | 'database' | 'tool';
 }
 
@@ -42,7 +42,7 @@ export interface Stat {
   label: string;
   value: number;
   suffix: string;
-  icon: string;
+  icon?: string;
 }
 
 export interface NavLink {
@@ -54,6 +54,7 @@ export interface SocialLink {
   platform: string;
   url: string;
   icon: string;
+  handle: string;
 }
 
 export interface ExploringItem {

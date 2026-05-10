@@ -4,6 +4,13 @@ import { motion } from 'framer-motion';
 import { SectionHeader, GlassCard } from '@/components/ui';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { stats, exploringItems, inspirators } from '@/data';
+import { Rocket, PenTool, Trophy } from 'lucide-react';
+
+const statIconMap: Record<string, React.ReactNode> = {
+  'Projects Built': <Rocket size={32} className="text-blue-400" />,
+  'Blog Posts': <PenTool size={32} className="text-cyan-400" />,
+  'Achievements': <Trophy size={32} className="text-amber-400" />,
+};
 
 export default function About() {
   return (
@@ -19,10 +26,10 @@ export default function About() {
         />
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+        <div className="flex flex-wrap justify-center gap-4 mb-20">
           {stats.map((stat, i) => (
-            <GlassCard key={stat.label} delay={i * 0.08} className="p-6 text-center">
-              <div className="text-3xl mb-2">{stat.icon}</div>
+            <GlassCard key={stat.label} delay={i * 0.08} className="p-6 text-center flex-1 min-w-[150px] lg:flex-none lg:w-64">
+              <div className="flex justify-center mb-3">{statIconMap[stat.label]}</div>
               <div className="font-heading font-bold text-4xl gradient-text mb-1">
                 <AnimatedCounter end={stat.value} suffix={stat.suffix} />
               </div>

@@ -3,6 +3,31 @@
 import { motion } from 'framer-motion';
 import { SectionHeader } from '@/components/ui';
 import { techStack } from '@/data';
+import { 
+  SiPython, SiTensorflow, SiPytorch, SiOpencv, 
+  SiHtml5, SiCss, SiJavascript, SiReact, SiNextdotjs, 
+  SiTailwindcss, SiMysql, SiGit, SiScikitlearn, 
+  SiNumpy, SiPandas, SiLangchain 
+} from 'react-icons/si';
+
+const iconMap: Record<string, React.ReactElement> = {
+  'Python': <SiPython className="text-[#3776AB]" />,
+  'TensorFlow': <SiTensorflow className="text-[#FF6F00]" />,
+  'PyTorch': <SiPytorch className="text-[#EE4C2C]" />,
+  'OpenCV': <SiOpencv className="text-[#5C3EE8]" />,
+  'HTML': <SiHtml5 className="text-[#E34F26]" />,
+  'CSS': <SiCss className="text-[#1572B6]" />,
+  'JavaScript': <SiJavascript className="text-[#F7DF1E]" />,
+  'React': <SiReact className="text-[#61DAFB]" />,
+  'Next.js': <SiNextdotjs className="text-white" />,
+  'Tailwind CSS': <SiTailwindcss className="text-[#06B6D4]" />,
+  'MySQL': <SiMysql className="text-[#4479A1]" />,
+  'Git': <SiGit className="text-[#F05032]" />,
+  'Scikit-learn': <SiScikitlearn className="text-[#F7931E]" />,
+  'NumPy': <SiNumpy className="text-[#013243]" />,
+  'Pandas': <SiPandas className="text-[#150458]" />,
+  'LangChain': <SiLangchain className="text-slate-300" />,
+};
 
 const row1 = techStack.slice(0, 8);
 const row2 = techStack.slice(8);
@@ -26,7 +51,7 @@ function MarqueeRow({ items, reverse = false }: { items: typeof techStack; rever
               hover:border-blue-500/30 hover:bg-blue-500/5 transition-colors duration-200
               cursor-default min-w-max group"
           >
-            <span className="text-2xl">{tech.icon}</span>
+            <span className="text-2xl">{iconMap[tech.name]}</span>
             <span className="text-sm font-medium text-slate-300 group-hover:text-blue-300 transition-colors">
               {tech.name}
             </span>
