@@ -65,7 +65,7 @@ export default function Contact() {
         setStatus('error');
         setTimeout(() => setStatus('idle'), 5000);
       }
-    } catch (error) {
+    } catch {
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
@@ -183,7 +183,7 @@ export default function Contact() {
               
               {status === 'success' && (
                 <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm text-center">
-                  Message sent successfully! I'll get back to you soon.
+                  Message sent successfully! I&apos;ll get back to you soon.
                 </div>
               )}
               {status === 'error' && (
