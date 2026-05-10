@@ -11,11 +11,11 @@ export default function SplashScreen() {
     // Lock scroll while loading
     document.body.style.overflow = 'hidden';
     
-    // Hide the splash screen after 4 seconds
+    // Hide the splash screen after 3 seconds
     const timer = setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = 'unset';
-    }, 4000);
+    }, 3000);
     
     return () => {
       clearTimeout(timer);
@@ -123,7 +123,7 @@ export default function SplashScreen() {
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
-                transition={{ duration: 3.5, ease: 'easeInOut' }}
+                transition={{ duration: 2.5, ease: 'easeInOut' }}
                 className="h-full bg-cyan-500 shadow-[0_0_10px_#22d3ee]"
               />
             </div>
