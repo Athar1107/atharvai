@@ -4,8 +4,6 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { MagneticButton } from '@/components/ui';
-import { FaLinkedinIn } from 'react-icons/fa6';
-import { SiGithub, SiMedium } from 'react-icons/si';
 
 const containerVariants: Variants = {
   hidden: {},
@@ -182,26 +180,6 @@ export default function Hero() {
             >
               ↓ Download CV
             </MagneticButton>
-            <div className="flex items-center gap-3 ml-2 max-md:ml-0 max-md:basis-full max-md:justify-center">
-              <MagneticButton
-                href="https://github.com/Athar1107"
-                className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-600 hover:border-blue-500/50 text-slate-400 hover:text-white bg-white/5 hover:bg-white/8 transition-all duration-300"
-              >
-                <SiGithub className="w-5 h-5" />
-              </MagneticButton>
-              <MagneticButton
-                href="https://www.linkedin.com/in/atharv-ambekar-187160297/"
-                className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-600 hover:border-blue-500/50 text-slate-400 hover:text-[#0A66C2] bg-white/5 hover:bg-white/8 transition-all duration-300"
-              >
-                <FaLinkedinIn className="w-5 h-5" />
-              </MagneticButton>
-              <MagneticButton
-                href="https://medium.com/@atharvambekar1105"
-                className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-600 hover:border-blue-500/50 text-slate-400 hover:text-white bg-white/5 hover:bg-white/8 transition-all duration-300"
-              >
-                <SiMedium className="w-5 h-5" />
-              </MagneticButton>
-            </div>
           </motion.div>
 
           {/* Stats row */}

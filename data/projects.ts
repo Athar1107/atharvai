@@ -22,7 +22,7 @@ export const projects: Project[] = [
     tags: ['Computer Vision', 'OpenCV', 'Python','Drowsiness Detection', 'Real-time Analysis' ],
     category: 'Computer Vision',
     githubUrl: 'https://github.com/Athar1107/AI-Powered-Driver-Drowsiness-Detection-System',
-    liveUrl: '#',
+    liveUrl: 'https://ai-driver-frontend.onrender.com/',
     featured: true,
   },
   {
