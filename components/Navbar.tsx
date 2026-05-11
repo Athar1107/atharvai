@@ -56,9 +56,9 @@ export default function Navbar() {
               className="flex items-center"
             >
               <Image
-                src="/Vector 19.png"
+                src="/logo.png"
                 alt="Atharv Ambekar Logo"
-                width={40}
+                width={150}
                 height={40}
                 className="object-contain h-8 w-auto"
                 priority
