@@ -20,14 +20,14 @@ export const experiences: Experience[] = [
   {
     id: '2',
     role: 'Blogger',
-    org: 'Independent Blog',
+    org: 'Personal Tech Blog',
     period: '2026 - Present',
     type: 'blog',
     icon: 'AI',
     description:
       'Creating engaging technical content focused on AI, Computer Vision, and emerging technologies.',
     bullets: [
-      'Published 10+ technical blogs on AI, Deep Learning, and Computer Vision',
+      'Published 1 technical blogs on AI, Deep Learning, and Computer Vision',
       'Simplified complex technical concepts into engaging content reaching 1000+ readers',
       'Explored and demonstrated real-world applications of modern AI technologies',
       'Built a strong technical presence and consistent brand across platforms',
