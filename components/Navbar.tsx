@@ -11,20 +11,37 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const headerOffset = 140;
+
+    const updateActive = () => {
       setScrolled(window.scrollY > 40);
 
       const sections = navLinks.map((l) => l.href.replace('#', ''));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(sections[i]);
-          break;
-        }
+      const marker = window.scrollY + headerOffset;
+
+      let current = sections[0] ?? 'home';
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (marker >= top) current = id;
       }
+      setActiveSection(current);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    updateActive();
+    const t = window.setTimeout(updateActive, 0);
+    const afterSplash = window.setTimeout(updateActive, 3100);
+    window.addEventListener('scroll', updateActive, { passive: true });
+    window.addEventListener('resize', updateActive, { passive: true });
+    window.addEventListener('load', updateActive);
+    return () => {
+      clearTimeout(t);
+      clearTimeout(afterSplash);
+      window.removeEventListener('scroll', updateActive);
+      window.removeEventListener('resize', updateActive);
+      window.removeEventListener('load', updateActive);
+    };
   }, []);
 
   const scrollTo = (href: string) => {

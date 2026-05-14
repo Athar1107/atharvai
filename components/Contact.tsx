@@ -35,39 +35,83 @@ const iconMap: Record<string, ReactElement> = {
   ),
 };
 
+const contactErrorHints: Record<string, string> = {
+  mail_not_configured:
+    'Email is not configured on the server. Add SMTP_HOST, SMTP_USER, and SMTP_PASS to .env.local (in portfolio-app), then restart npm run dev.',
+  smtp_auth_failed:
+    'Mail server rejected the login. For Gmail: SMTP_USER must be the same Google account you created the App Password for; use the 16-character App Password as SMTP_PASS (no spaces).',
+  smtp_connection_failed:
+    'Could not connect to the mail server (blocked network or wrong host). Try another Wi‑Fi, disable VPN, or confirm port 587 is allowed.',
+  smtp_tls_failed: 'A TLS/SSL error occurred while connecting to the mail server.',
+  smtp_message_rejected:
+    'The server rejected this email. Set SMTP_FROM to the same address as SMTP_USER (or a verified Send‑as alias in Gmail).',
+  send_failed: 'The message could not be sent. Please try again or email directly.',
+  missing_fields: 'Please fill in every field.',
+  invalid_email: 'Please enter a valid email address.',
+  message_too_long: 'Message is too long. Please shorten it.',
+  invalid_json: 'Something went wrong sending the form. Please try again.'
+};
+
+function hintForContactError(code: string | undefined): string {
+  if (code && contactErrorHints[code]) return contactErrorHints[code];
+  return contactErrorHints.send_failed;
+}
+
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorHint, setErrorHint] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    
+    setErrorHint(null);
+
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'
         },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
-          ...formData
-        })
+        body: JSON.stringify(formData)
       });
-      
-      const result = await response.json();
-      if (result.success) {
+
+      let result: { ok?: boolean; error?: string; devHint?: string } = {};
+      try {
+        const text = await response.text();
+        if (text) result = JSON.parse(text) as { ok?: boolean; error?: string; devHint?: string };
+      } catch {
+        setStatus('error');
+        setErrorHint(hintForContactError(undefined));
+        setTimeout(() => {
+          setStatus('idle');
+          setErrorHint(null);
+        }, 12000);
+        return;
+      }
+
+      if (response.ok && result.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
         setStatus('error');
-        setTimeout(() => setStatus('idle'), 5000);
+        const base = hintForContactError(result.error);
+        const dev = result.devHint ? `\n\nDetails (dev only): ${result.devHint}` : '';
+        setErrorHint(base + dev);
+        setTimeout(() => {
+          setStatus('idle');
+          setErrorHint(null);
+        }, 12000);
       }
     } catch {
       setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
+      setErrorHint(hintForContactError(undefined));
+      setTimeout(() => {
+        setStatus('idle');
+        setErrorHint(null);
+      }, 12000);
     }
   };
   return (
@@ -187,8 +231,14 @@ export default function Contact() {
                 </div>
               )}
               {status === 'error' && (
-                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
-                  Something went wrong. Please try again or email me directly.
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-left space-y-2">
+                  <p className="font-medium text-center">Could not send your message.</p>
+                  {errorHint && <p className="text-red-300/95 leading-relaxed">{errorHint}</p>}
+                  {!errorHint && (
+                    <p className="text-center text-red-300/95">
+                      Please try again or email me directly.
+                    </p>
+                  )}
                 </div>
               )}
 
