@@ -125,49 +125,49 @@ function contactOwnerTemplate(name: string, email: string, message: string): Ema
       message
     ].join('\n'),
     html: `
-      <div style="margin:0;padding:0;background:#050505;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
-        <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#050505;">
-          <div style="padding-bottom:28px;border-bottom:1px solid #232323;">
+      <div style="margin:0;padding:0;background:#061426;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
+        <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#061426;background:linear-gradient(135deg,#061426 0%,#0b1f3a 55%,#102f5c 100%);">
+          <div style="padding-bottom:28px;border-bottom:1px solid #24476f;">
             <img src="cid:${LOGO_CID}" width="156" alt="Atharv portfolio" style="display:block;width:156px;max-width:156px;height:auto;border:0;outline:none;text-decoration:none;" />
           </div>
 
           <div style="padding:34px 0 0;">
             <h1 style="margin:0 0 18px;font-size:26px;line-height:1.3;font-weight:800;color:#ffffff;">New portfolio request from ${safeName}</h1>
-            <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#d9e2ef;">
+            <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#dbeafe;">
               A new message arrived through your portfolio contact form. Reply directly to
-              <a href="mailto:${safeEmail}" style="color:#ff7a1a;text-decoration:underline;">${safeEmail}</a>.
+              <a href="mailto:${safeEmail}" style="color:#7dd3fc;text-decoration:underline;">${safeEmail}</a>.
             </p>
 
-            <div style="margin:0 0 28px;padding:28px 26px;border:1px solid #242424;border-radius:12px;background:#111111;">
-              <p style="margin:0 0 24px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777777;">Inquiry Summary</p>
+            <div style="margin:0 0 28px;padding:28px 26px;border:1px solid #2d5f91;border-radius:12px;background:#0a1b33;background:linear-gradient(135deg,#081a32 0%,#0d2a4e 100%);">
+              <p style="margin:0 0 24px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#93c5fd;">Inquiry Summary</p>
               <div style="margin:0 0 16px;">
-                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Name</span>
+                <span style="display:inline-block;width:150px;color:#8fb7de;font-size:16px;">Name</span>
                 <strong style="color:#ffffff;font-size:16px;">${safeName}</strong>
               </div>
               <div style="margin:0 0 16px;">
-                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Email</span>
+                <span style="display:inline-block;width:150px;color:#8fb7de;font-size:16px;">Email</span>
                 <a href="mailto:${safeEmail}" style="color:#ffffff;font-size:16px;font-weight:700;text-decoration:none;">${safeEmail}</a>
               </div>
               <div style="margin:0;">
-                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Submitted</span>
+                <span style="display:inline-block;width:150px;color:#8fb7de;font-size:16px;">Submitted</span>
                 <strong style="color:#ffffff;font-size:16px;">${escapeHtml(submittedAt)} IST</strong>
               </div>
             </div>
 
-            <div style="margin:0 0 30px;padding:24px 26px;border:1px solid #242424;border-radius:12px;background:#111111;">
-              <p style="margin:0 0 16px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777777;">Message</p>
-              <div style="color:#f4f7fb;font-size:16px;line-height:1.75;">
+            <div style="margin:0 0 30px;padding:24px 26px;border:1px solid #2d5f91;border-radius:12px;background:#0a1b33;background:linear-gradient(135deg,#081a32 0%,#0d2a4e 100%);">
+              <p style="margin:0 0 16px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#93c5fd;">Message</p>
+              <div style="color:#f8fbff;font-size:16px;line-height:1.75;">
               ${safeMessage}
               </div>
             </div>
 
-            <p style="margin:0 0 34px;font-size:16px;line-height:1.7;color:#d9e2ef;">
+            <p style="margin:0 0 34px;font-size:16px;line-height:1.7;color:#dbeafe;">
               You can reply directly from this email or use this quick reply link:
-              <a href="${escapeHtml(mailto)}" style="color:#ff7a1a;text-decoration:underline;">Reply to ${safeName}</a>.
+              <a href="${escapeHtml(mailto)}" style="color:#7dd3fc;text-decoration:underline;">Reply to ${safeName}</a>.
             </p>
           </div>
 
-          <div style="padding-top:28px;border-top:1px solid #232323;color:#505050;font-size:14px;">
+          <div style="padding-top:28px;border-top:1px solid #24476f;color:#86a8c8;font-size:14px;">
             (c) ${new Date().getFullYear()} ATHARV. All rights reserved.
           </div>
         </div>
@@ -192,37 +192,37 @@ function senderReceiptTemplate(name: string, replyAddress: string): EmailTemplat
       'Atharv'
     ].join('\n'),
     html: `
-      <div style="margin:0;padding:0;background:#050505;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
-        <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#050505;">
-          <div style="padding-bottom:28px;border-bottom:1px solid #232323;">
+      <div style="margin:0;padding:0;background:#061426;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
+        <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#061426;background:linear-gradient(135deg,#061426 0%,#0b1f3a 55%,#102f5c 100%);">
+          <div style="padding-bottom:28px;border-bottom:1px solid #24476f;">
             <img src="cid:${LOGO_CID}" width="156" alt="Atharv portfolio" style="display:block;width:156px;max-width:156px;height:auto;border:0;outline:none;text-decoration:none;" />
           </div>
 
           <div style="padding:34px 0 0;">
             <h1 style="margin:0 0 18px;font-size:26px;line-height:1.3;font-weight:800;color:#ffffff;">Hey ${safeName}, I've got your message!</h1>
-            <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#d9e2ef;">
+            <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#dbeafe;">
               Thank you for reaching out through my portfolio. I received your message and will get back to you soon.
             </p>
 
-            <div style="margin:0 0 30px;padding:28px 26px;border:1px solid #242424;border-radius:12px;background:#111111;">
-              <p style="margin:0 0 24px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777777;">Your Inquiry Summary</p>
+            <div style="margin:0 0 30px;padding:28px 26px;border:1px solid #2d5f91;border-radius:12px;background:#0a1b33;background:linear-gradient(135deg,#081a32 0%,#0d2a4e 100%);">
+              <p style="margin:0 0 24px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#93c5fd;">Your Inquiry Summary</p>
               <div style="margin:0 0 16px;">
-                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Status</span>
+                <span style="display:inline-block;width:150px;color:#8fb7de;font-size:16px;">Status</span>
                 <strong style="color:#ffffff;font-size:16px;">Received</strong>
               </div>
               <div style="margin:0;">
-                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Reply time</span>
+                <span style="display:inline-block;width:150px;color:#8fb7de;font-size:16px;">Reply time</span>
                 <strong style="color:#ffffff;font-size:16px;">As soon as possible</strong>
               </div>
             </div>
 
-            <p style="margin:0 0 34px;font-size:16px;line-height:1.7;color:#d9e2ef;">
+            <p style="margin:0 0 34px;font-size:16px;line-height:1.7;color:#dbeafe;">
               In the meantime, feel free to reply to this email or reach me directly at
-              <a href="mailto:${safeReplyAddress}" style="color:#ff7a1a;text-decoration:underline;">${safeReplyAddress}</a>.
+              <a href="mailto:${safeReplyAddress}" style="color:#7dd3fc;text-decoration:underline;">${safeReplyAddress}</a>.
             </p>
           </div>
 
-          <div style="padding-top:28px;border-top:1px solid #232323;color:#505050;font-size:14px;">
+          <div style="padding-top:28px;border-top:1px solid #24476f;color:#86a8c8;font-size:14px;">
             (c) ${new Date().getFullYear()} ATHARV. All rights reserved.
           </div>
         </div>
