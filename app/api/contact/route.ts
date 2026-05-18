@@ -261,6 +261,22 @@ export async function POST(request: Request) {
   const from = fromRaw.replace(/^["']|["']$/g, '').trim();
 
   if (!host || !user || !pass || !to || !from) {
+    const missing = [
+      ['SMTP_HOST', host],
+      ['SMTP_USER', user],
+      ['SMTP_PASS', pass],
+      ['SMTP_TO', to],
+      ['SMTP_FROM', from]
+    ]
+      .filter(([, value]) => !value)
+      .map(([name]) => name);
+
+    console.error('[api/contact] mail_not_configured', {
+      missing,
+      nodeEnv: process.env.NODE_ENV,
+      vercelEnv: process.env.VERCEL_ENV
+    });
+
     return NextResponse.json({ ok: false, error: 'mail_not_configured' }, { status: 503 });
   }
 
