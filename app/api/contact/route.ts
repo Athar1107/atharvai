@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+const LOGO_CID = 'portfolio-logo';
+const LOGO_PATH = 'public/logo.png';
+
 function env(name: string): string | undefined {
   const raw = process.env[name];
   if (raw === undefined) return;
@@ -30,6 +33,14 @@ type EmailTemplate = {
   text: string;
   html: string;
 };
+
+function logoAttachment() {
+  return {
+    filename: 'logo.png',
+    path: LOGO_PATH,
+    cid: LOGO_CID
+  };
+}
 
 function isNonEmptyString(v: unknown): v is string {
   return typeof v === 'string' && v.trim().length > 0;
@@ -117,7 +128,7 @@ function contactOwnerTemplate(name: string, email: string, message: string): Ema
       <div style="margin:0;padding:0;background:#050505;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
         <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#050505;">
           <div style="padding-bottom:28px;border-bottom:1px solid #232323;">
-            <div style="font-size:42px;line-height:1;font-weight:900;letter-spacing:-2px;color:#ffffff;">ATHARV<span style="color:#ff5a1f;">.</span></div>
+            <img src="cid:${LOGO_CID}" width="156" alt="Atharv portfolio" style="display:block;width:156px;max-width:156px;height:auto;border:0;outline:none;text-decoration:none;" />
           </div>
 
           <div style="padding:34px 0 0;">
@@ -184,7 +195,7 @@ function senderReceiptTemplate(name: string, replyAddress: string): EmailTemplat
       <div style="margin:0;padding:0;background:#050505;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
         <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#050505;">
           <div style="padding-bottom:28px;border-bottom:1px solid #232323;">
-            <div style="font-size:42px;line-height:1;font-weight:900;letter-spacing:-2px;color:#ffffff;">ATHARV<span style="color:#ff5a1f;">.</span></div>
+            <img src="cid:${LOGO_CID}" width="156" alt="Atharv portfolio" style="display:block;width:156px;max-width:156px;height:auto;border:0;outline:none;text-decoration:none;" />
           </div>
 
           <div style="padding:34px 0 0;">
@@ -270,7 +281,8 @@ export async function POST(request: Request) {
       replyTo: email,
       subject,
       text: ownerEmail.text,
-      html: ownerEmail.html
+      html: ownerEmail.html,
+      attachments: [logoAttachment()]
     });
 
     const skipReceipt =
@@ -286,7 +298,8 @@ export async function POST(request: Request) {
           to: email,
           subject: 'Thanks - I received your message',
           text: receiptEmail.text,
-          html: receiptEmail.html
+          html: receiptEmail.html,
+          attachments: [logoAttachment()]
         });
       } catch (receiptErr) {
         console.error('[api/contact] receipt to sender failed', receiptErr);
