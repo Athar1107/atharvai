@@ -114,29 +114,50 @@ function contactOwnerTemplate(name: string, email: string, message: string): Ema
       message
     ].join('\n'),
     html: `
-      <div style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;color:#172033;">
-        <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7f3;border-radius:16px;overflow:hidden;">
-          <div style="padding:28px 32px;background:#0f172a;color:#ffffff;">
-            <p style="margin:0 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;">Portfolio Contact</p>
-            <h1 style="margin:0;font-size:24px;line-height:1.3;">New message from ${safeName}</h1>
+      <div style="margin:0;padding:0;background:#050505;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
+        <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#050505;">
+          <div style="padding-bottom:28px;border-bottom:1px solid #232323;">
+            <div style="font-size:42px;line-height:1;font-weight:900;letter-spacing:-2px;color:#ffffff;">ATHARV<span style="color:#ff5a1f;">.</span></div>
           </div>
-          <div style="padding:28px 32px;">
-            <div style="margin-bottom:24px;padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;">
-              <p style="margin:0 0 10px;font-size:14px;color:#64748b;">Sender</p>
-              <p style="margin:0;font-size:18px;font-weight:700;color:#0f172a;">${safeName}</p>
-              <p style="margin:6px 0 0;font-size:15px;"><a href="mailto:${safeEmail}" style="color:#2563eb;text-decoration:none;">${safeEmail}</a></p>
-              <p style="margin:12px 0 0;font-size:13px;color:#64748b;">Submitted ${escapeHtml(submittedAt)} IST</p>
+
+          <div style="padding:34px 0 0;">
+            <h1 style="margin:0 0 18px;font-size:26px;line-height:1.3;font-weight:800;color:#ffffff;">New portfolio request from ${safeName}</h1>
+            <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#d9e2ef;">
+              A new message arrived through your portfolio contact form. Reply directly to
+              <a href="mailto:${safeEmail}" style="color:#ff7a1a;text-decoration:underline;">${safeEmail}</a>.
+            </p>
+
+            <div style="margin:0 0 28px;padding:28px 26px;border:1px solid #242424;border-radius:12px;background:#111111;">
+              <p style="margin:0 0 24px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777777;">Inquiry Summary</p>
+              <div style="margin:0 0 16px;">
+                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Name</span>
+                <strong style="color:#ffffff;font-size:16px;">${safeName}</strong>
+              </div>
+              <div style="margin:0 0 16px;">
+                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Email</span>
+                <a href="mailto:${safeEmail}" style="color:#ffffff;font-size:16px;font-weight:700;text-decoration:none;">${safeEmail}</a>
+              </div>
+              <div style="margin:0;">
+                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Submitted</span>
+                <strong style="color:#ffffff;font-size:16px;">${escapeHtml(submittedAt)} IST</strong>
+              </div>
             </div>
-            <p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#334155;">Message</p>
-            <div style="padding:18px 20px;border-left:4px solid #2563eb;background:#eff6ff;border-radius:10px;color:#172033;font-size:16px;line-height:1.65;">
+
+            <div style="margin:0 0 30px;padding:24px 26px;border:1px solid #242424;border-radius:12px;background:#111111;">
+              <p style="margin:0 0 16px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777777;">Message</p>
+              <div style="color:#f4f7fb;font-size:16px;line-height:1.75;">
               ${safeMessage}
+              </div>
             </div>
-            <div style="margin-top:28px;">
-              <a href="${escapeHtml(mailto)}" style="display:inline-block;padding:12px 18px;border-radius:10px;background:#2563eb;color:#ffffff;font-weight:700;text-decoration:none;">Reply to ${safeName}</a>
-            </div>
+
+            <p style="margin:0 0 34px;font-size:16px;line-height:1.7;color:#d9e2ef;">
+              You can reply directly from this email or use this quick reply link:
+              <a href="${escapeHtml(mailto)}" style="color:#ff7a1a;text-decoration:underline;">Reply to ${safeName}</a>.
+            </p>
           </div>
-          <div style="padding:18px 32px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b;font-size:13px;">
-            This email was sent from your portfolio contact form.
+
+          <div style="padding-top:28px;border-top:1px solid #232323;color:#505050;font-size:14px;">
+            (c) ${new Date().getFullYear()} ATHARV. All rights reserved.
           </div>
         </div>
       </div>
@@ -144,32 +165,54 @@ function contactOwnerTemplate(name: string, email: string, message: string): Ema
   };
 }
 
-function senderReceiptTemplate(name: string): EmailTemplate {
+function senderReceiptTemplate(name: string, replyAddress: string): EmailTemplate {
   const safeName = escapeHtml(name);
+  const safeReplyAddress = escapeHtml(replyAddress);
 
   return {
     text: [
-      `Hi ${name},`,
+      `Hey ${name}, I've got your message!`,
       '',
-      'Thanks for reaching out through my portfolio contact form. I received your message and will reply when I can.',
+      'Thank you for reaching out through my portfolio. I received your message and will get back to you soon.',
+      '',
+      `In the meantime, you can reply to this email or reach me directly at ${replyAddress}.`,
       '',
       'Best,',
       'Atharv'
     ].join('\n'),
     html: `
-      <div style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;color:#172033;">
-        <div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #dfe7f3;border-radius:16px;overflow:hidden;">
-          <div style="padding:26px 30px;background:#2563eb;color:#ffffff;">
-            <p style="margin:0 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#dbeafe;">Message Received</p>
-            <h1 style="margin:0;font-size:24px;line-height:1.3;">Thanks for reaching out</h1>
+      <div style="margin:0;padding:0;background:#050505;font-family:Arial,Helvetica,sans-serif;color:#ffffff;">
+        <div style="max-width:750px;margin:0 auto;padding:34px 30px 36px;background:#050505;">
+          <div style="padding-bottom:28px;border-bottom:1px solid #232323;">
+            <div style="font-size:42px;line-height:1;font-weight:900;letter-spacing:-2px;color:#ffffff;">ATHARV<span style="color:#ff5a1f;">.</span></div>
           </div>
-          <div style="padding:28px 30px;font-size:16px;line-height:1.65;color:#334155;">
-            <p style="margin:0 0 16px;">Hi ${safeName},</p>
-            <p style="margin:0 0 16px;">Thanks for contacting me through my portfolio. I received your message and will reply when I can.</p>
-            <p style="margin:0;">Best,<br/><strong style="color:#0f172a;">Atharv</strong></p>
+
+          <div style="padding:34px 0 0;">
+            <h1 style="margin:0 0 18px;font-size:26px;line-height:1.3;font-weight:800;color:#ffffff;">Hey ${safeName}, I've got your message!</h1>
+            <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#d9e2ef;">
+              Thank you for reaching out through my portfolio. I received your message and will get back to you soon.
+            </p>
+
+            <div style="margin:0 0 30px;padding:28px 26px;border:1px solid #242424;border-radius:12px;background:#111111;">
+              <p style="margin:0 0 24px;font-size:14px;line-height:1.4;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#777777;">Your Inquiry Summary</p>
+              <div style="margin:0 0 16px;">
+                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Status</span>
+                <strong style="color:#ffffff;font-size:16px;">Received</strong>
+              </div>
+              <div style="margin:0;">
+                <span style="display:inline-block;width:150px;color:#858585;font-size:16px;">Reply time</span>
+                <strong style="color:#ffffff;font-size:16px;">As soon as possible</strong>
+              </div>
+            </div>
+
+            <p style="margin:0 0 34px;font-size:16px;line-height:1.7;color:#d9e2ef;">
+              In the meantime, feel free to reply to this email or reach me directly at
+              <a href="mailto:${safeReplyAddress}" style="color:#ff7a1a;text-decoration:underline;">${safeReplyAddress}</a>.
+            </p>
           </div>
-          <div style="padding:16px 30px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b;font-size:13px;">
-            This is an automatic confirmation from the portfolio contact form.
+
+          <div style="padding-top:28px;border-top:1px solid #232323;color:#505050;font-size:14px;">
+            (c) ${new Date().getFullYear()} ATHARV. All rights reserved.
           </div>
         </div>
       </div>
@@ -236,7 +279,7 @@ export async function POST(request: Request) {
     const sameMailbox = email.toLowerCase() === to.toLowerCase();
     if (!skipReceipt && !sameMailbox) {
       try {
-        const receiptEmail = senderReceiptTemplate(name);
+        const receiptEmail = senderReceiptTemplate(name, to);
 
         await transporter.sendMail({
           from,
