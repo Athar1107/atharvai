@@ -26,6 +26,11 @@ type MaybeSmtpErr = Error & {
   response?: string;
 };
 
+type EmailTemplate = {
+  text: string;
+  html: string;
+};
+
 function isNonEmptyString(v: unknown): v is string {
   return typeof v === 'string' && v.trim().length > 0;
 }
@@ -84,6 +89,94 @@ function createTransporter(
   });
 }
 
+function contactOwnerTemplate(name: string, email: string, message: string): EmailTemplate {
+  const submittedAt = new Intl.DateTimeFormat('en-IN', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    timeZone: 'Asia/Kolkata'
+  }).format(new Date());
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeMessage = escapeHtml(message).replace(/\n/g, '<br/>');
+  const mailto = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(
+    `Re: Portfolio contact from ${name}`
+  )}`;
+
+  return {
+    text: [
+      'New portfolio contact message',
+      '',
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Submitted: ${submittedAt} IST`,
+      '',
+      'Message:',
+      message
+    ].join('\n'),
+    html: `
+      <div style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;color:#172033;">
+        <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7f3;border-radius:16px;overflow:hidden;">
+          <div style="padding:28px 32px;background:#0f172a;color:#ffffff;">
+            <p style="margin:0 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;">Portfolio Contact</p>
+            <h1 style="margin:0;font-size:24px;line-height:1.3;">New message from ${safeName}</h1>
+          </div>
+          <div style="padding:28px 32px;">
+            <div style="margin-bottom:24px;padding:18px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;">
+              <p style="margin:0 0 10px;font-size:14px;color:#64748b;">Sender</p>
+              <p style="margin:0;font-size:18px;font-weight:700;color:#0f172a;">${safeName}</p>
+              <p style="margin:6px 0 0;font-size:15px;"><a href="mailto:${safeEmail}" style="color:#2563eb;text-decoration:none;">${safeEmail}</a></p>
+              <p style="margin:12px 0 0;font-size:13px;color:#64748b;">Submitted ${escapeHtml(submittedAt)} IST</p>
+            </div>
+            <p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#334155;">Message</p>
+            <div style="padding:18px 20px;border-left:4px solid #2563eb;background:#eff6ff;border-radius:10px;color:#172033;font-size:16px;line-height:1.65;">
+              ${safeMessage}
+            </div>
+            <div style="margin-top:28px;">
+              <a href="${escapeHtml(mailto)}" style="display:inline-block;padding:12px 18px;border-radius:10px;background:#2563eb;color:#ffffff;font-weight:700;text-decoration:none;">Reply to ${safeName}</a>
+            </div>
+          </div>
+          <div style="padding:18px 32px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b;font-size:13px;">
+            This email was sent from your portfolio contact form.
+          </div>
+        </div>
+      </div>
+    `
+  };
+}
+
+function senderReceiptTemplate(name: string): EmailTemplate {
+  const safeName = escapeHtml(name);
+
+  return {
+    text: [
+      `Hi ${name},`,
+      '',
+      'Thanks for reaching out through my portfolio contact form. I received your message and will reply when I can.',
+      '',
+      'Best,',
+      'Atharv'
+    ].join('\n'),
+    html: `
+      <div style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,Helvetica,sans-serif;color:#172033;">
+        <div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #dfe7f3;border-radius:16px;overflow:hidden;">
+          <div style="padding:26px 30px;background:#2563eb;color:#ffffff;">
+            <p style="margin:0 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#dbeafe;">Message Received</p>
+            <h1 style="margin:0;font-size:24px;line-height:1.3;">Thanks for reaching out</h1>
+          </div>
+          <div style="padding:28px 30px;font-size:16px;line-height:1.65;color:#334155;">
+            <p style="margin:0 0 16px;">Hi ${safeName},</p>
+            <p style="margin:0 0 16px;">Thanks for contacting me through my portfolio. I received your message and will reply when I can.</p>
+            <p style="margin:0;">Best,<br/><strong style="color:#0f172a;">Atharv</strong></p>
+          </div>
+          <div style="padding:16px 30px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b;font-size:13px;">
+            This is an automatic confirmation from the portfolio contact form.
+          </div>
+        </div>
+      </div>
+    `
+  };
+}
+
 export async function POST(request: Request) {
   let body: ContactBody;
   try {
@@ -126,14 +219,15 @@ export async function POST(request: Request) {
     const transporter = createTransporter(host, port, secure, user, pass);
 
     const subject = `Portfolio contact: ${name}`;
+    const ownerEmail = contactOwnerTemplate(name, email, message);
 
     await transporter.sendMail({
       from,
       to,
       replyTo: email,
       subject,
-      text: `From: ${name} <${email}>\n\n${message}`,
-      html: `<p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p><p>${escapeHtml(message).replace(/\n/g, '<br/>')}</p>`
+      text: ownerEmail.text,
+      html: ownerEmail.html
     });
 
     const skipReceipt =
@@ -142,12 +236,14 @@ export async function POST(request: Request) {
     const sameMailbox = email.toLowerCase() === to.toLowerCase();
     if (!skipReceipt && !sameMailbox) {
       try {
+        const receiptEmail = senderReceiptTemplate(name);
+
         await transporter.sendMail({
           from,
           to: email,
-          subject: 'Thanks — I received your message',
-          text: `Hi ${name},\n\nThanks for reaching out through my portfolio contact form. I got your message and will reply when I can.\n\n—`,
-          html: `<p>Hi ${escapeHtml(name)},</p><p>Thanks for reaching out through my portfolio contact form. I got your message and will reply when I can.</p>`
+          subject: 'Thanks - I received your message',
+          text: receiptEmail.text,
+          html: receiptEmail.html
         });
       } catch (receiptErr) {
         console.error('[api/contact] receipt to sender failed', receiptErr);
