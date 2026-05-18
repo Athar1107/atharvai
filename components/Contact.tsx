@@ -37,7 +37,7 @@ const iconMap: Record<string, ReactElement> = {
 
 const contactErrorHints: Record<string, string> = {
   mail_not_configured:
-    'Email is not configured on the server. Add SMTP_HOST, SMTP_USER, and SMTP_PASS to .env.local (in portfolio-app), then restart npm run dev.',
+    'The contact form is temporarily unavailable. Please email me directly and I will get back to you soon.',
   smtp_auth_failed:
     'Mail server rejected the login. For Gmail: SMTP_USER must be the same Google account you created the App Password for; use the 16-character App Password as SMTP_PASS (no spaces).',
   smtp_connection_failed:
